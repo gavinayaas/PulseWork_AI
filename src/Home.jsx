@@ -7,10 +7,10 @@ import {
   ShieldCheck,
   Target,
   Menu,
-  ChevronRight,
+  ChevronRight, 
   Lightbulb,
   Layers,
-  CheckCircle2,
+  CheckCircle2,  
 } from "lucide-react";
 
 import { Link } from "react-router-dom";

@@ -58,7 +58,7 @@ function Auth() {
     }
 
     // Frontend demonstration only
-    navigate("/create-task");
+    navigate("/dashboard");
   };
 
   const fieldClass =
@@ -146,9 +146,9 @@ function Auth() {
                 value={formData.email}
                 onChange={handleChange}
                 className={fieldClass}
-                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                title="Enter a valid email address"
                 required
+                pattern="^[a-zA-Z0-9]+([._%+-][a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,}$"
+                title="Enter a valid email address, such as user@gmail.com"
               />
             </div>
           </div>
@@ -214,14 +214,20 @@ function Auth() {
                 />
 
                 <Input
-                  type={showConfirmPassword ? "text" : "password"}
-                  name="confirmPassword"
-                  placeholder="Confirm your password"
-                  value={formData.confirmPassword}
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Enter your password"
+                  value={formData.password}
                   onChange={handleChange}
                   className={`${fieldClass} pr-12`}
-                  minLength={8}
                   required
+                  minLength={isLogin ? 1 : 8}
+                  pattern={
+                    isLogin
+                      ? undefined
+                      : "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&#^_-])[A-Za-z\\d@$!%*?&#^_-]{8,}$"
+                  }
+                  title="Password must have at least 8 characters, uppercase, lowercase, number and special character."
                 />
 
                 <button
